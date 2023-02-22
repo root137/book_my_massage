@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../helper/database_helper.dart';
+import '../model/booking_model.dart';
 import 'home_screen.dart';
 
 class BookingScreen extends StatefulWidget {
@@ -173,7 +175,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     minimumSize: const Size(400, 50),
                     elevation: 12,
                     backgroundColor: Colors.black38),
-                onPressed: () {
+                onPressed: () async {
                   if (dateController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -199,7 +201,25 @@ class _BookingScreenState extends State<BookingScreen> {
                       ),
                     );
                   } else {
-                    //  for booking and storing data in local storage
+                    // Store data in the database
+                    final booking = BookingModel(
+                      date: dateController.text,
+                      time: timeController.text,
+                    );
+                    final dbHelper = DatabaseHelper.instance;
+                    final id = await dbHelper.insertBooking(booking);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text('Booking created with id $id.'),
+                        duration: Duration(seconds: 2),
+                        action: SnackBarAction(
+                          label: 'OK',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );
                   }
                 },
                 child: const Text(

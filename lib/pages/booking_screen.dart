@@ -199,7 +199,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       ),
                     );
                   } else {
-                    // Perform the booking action here
+                    //  for booking and storing data in local storage
                   }
                 },
                 child: const Text(

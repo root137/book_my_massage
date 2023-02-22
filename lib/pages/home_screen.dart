@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Center(
           child: Text(
             "Massage Centers",
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

@@ -2,6 +2,8 @@ import 'package:book_my_massage/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _SplashScreen();

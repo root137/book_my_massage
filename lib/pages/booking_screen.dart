@@ -24,7 +24,7 @@ class _BookingScreenState extends State<BookingScreen> {
         title: Center(
           child: Text(
             "Bookings",
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
@@ -110,8 +110,8 @@ class _BookingScreenState extends State<BookingScreen> {
                         DatePicker.showDatePicker(
                           context,
                           showTitleActions: true,
-                          minTime: DateTime(2023, 2, 1),
-                          maxTime: DateTime(2100, 12, 31),
+                          minTime: DateTime.now(),
+                          maxTime: DateTime(2050, 12, 31),
                           onConfirm: (date) {
                             dateController.text =
                                 DateFormat('yyyy-MM-dd').format(date);
@@ -158,7 +158,7 @@ class _BookingScreenState extends State<BookingScreen> {
                           locale: LocaleType.en,
                         );
                       },
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -170,11 +170,42 @@ class _BookingScreenState extends State<BookingScreen> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    minimumSize: Size(400, 50),
+                    minimumSize: const Size(400, 50),
                     elevation: 12,
                     backgroundColor: Colors.black38),
-                onPressed: () {},
-                child: Text('Book Now'),
+                onPressed: () {
+                  if (dateController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Please select a date.'),
+                        duration: Duration(seconds: 2),
+                        action: SnackBarAction(
+                          label: 'OK',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );
+                  } else if (timeController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Please select a time.'),
+                        duration: Duration(seconds: 2),
+                        action: SnackBarAction(
+                          label: 'OK',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );
+                  } else {
+                    // Perform the booking action here
+                  }
+                },
+                child: const Text(
+                  'Book Now',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                ),
               ),
             ),
           ],

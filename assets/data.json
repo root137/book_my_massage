@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "image_url": "https://example.com/images/massage-center.jpg",
+    "title": "Nirvana Massage Center",
+    "address": "Thamel Marg, Kathmandu",
+    "phone_number": "+977-01-4444444"
+  },
+  {
+    "id": 2,
+    "image_url": "https://example.com/images/mandara-spa.jpg",
+    "title": "Mandara Spa",
+    "address": "Lazimpat, Kathmandu",
+    "phone_number": "+977-01-5555555"
+  },
+  {
+    "id": 3,
+    "image_url": "https://example.com/images/six-senses.jpg",
+    "title": "Six Senses Spa",
+    "address": "Bouddha, Kathmandu",
+    "phone_number": "+977-01-6666666"
+  },
+  {
+    "id": 4,
+    "image_url": "https://example.com/images/oasis-spa.jpg",
+    "title": "Oasis Spa",
+    "address": "Bakhundole, Lalitpur",
+    "phone_number": "+977-01-7777777"
+  }
+]

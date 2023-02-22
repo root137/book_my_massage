@@ -78,7 +78,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       DatePicker.showDatePicker(
                         context,
                         showTitleActions: true,
-                        minTime: DateTime(2000, 1, 1),
+                        minTime: DateTime(2023, 2, 1),
                         maxTime: DateTime(2100, 12, 31),
                         onConfirm: (date) {
                           dateController.text =

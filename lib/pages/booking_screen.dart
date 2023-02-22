@@ -212,7 +212,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.green,
-                        content: Text('Booking created with id $id.'),
+                        content: Text('Booked Successfully!!'),
                         duration: Duration(seconds: 2),
                         action: SnackBarAction(
                           label: 'OK',
@@ -220,6 +220,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         ),
                       ),
                     );
+                    Navigator.pop(context);
                   }
                 },
                 child: const Text(

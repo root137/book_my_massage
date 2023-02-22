@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'home_screen.dart';
+
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
 
@@ -37,96 +39,140 @@ class _BookingScreenState extends State<BookingScreen> {
               fit: BoxFit.fill,
             ),
             SizedBox(height: 16.0),
-            Text(
-              'Massage Therapy',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            Padding(
+              padding: EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'BEAUTY HEALTH SPA',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  GestureDetector(
+                    onTap: () {
+                      launchMap();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.location_on, size: 16),
+                        SizedBox(width: 5),
+                        Text(
+                          'New Baneshwor, Kathmandu',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  GestureDetector(
+                    onTap: () {
+                      launchDialer();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.phone, size: 16),
+                        SizedBox(width: 5),
+                        Text(
+                          '9803736532',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: 8.0),
-            Row(
-              children: <Widget>[
-                Icon(Icons.location_on),
-                SizedBox(width: 8.0),
-                Text(
-                  'Baneshwor, KTM',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ],
-            ),
-            SizedBox(height: 8.0),
-            Row(
-              children: <Widget>[
-                Icon(Icons.phone),
-                SizedBox(width: 8.0),
-                Text(
-                  '555-555-5555',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
+            SizedBox(height: 30),
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextFormField(
-                    controller: dateController,
-                    decoration: InputDecoration(
-                      labelText: 'Select Date',
-                      border: OutlineInputBorder(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(28),
+                      border: Border.all(color: Colors.grey),
                     ),
-                    readOnly: true,
-                    onTap: () {
-                      DatePicker.showDatePicker(
-                        context,
-                        showTitleActions: true,
-                        minTime: DateTime(2023, 2, 1),
-                        maxTime: DateTime(2100, 12, 31),
-                        onConfirm: (date) {
-                          dateController.text =
-                              DateFormat('yyyy-MM-dd').format(date);
-                        },
-                        currentTime: DateTime.now(),
-                        locale: LocaleType.en,
-                      );
-                    },
+                    child: TextFormField(
+                      controller: dateController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.date_range),
+                        labelText: 'Select Date',
+                        border: InputBorder.none,
+                      ),
+                      readOnly: true,
+                      onTap: () {
+                        DatePicker.showDatePicker(
+                          context,
+                          showTitleActions: true,
+                          minTime: DateTime(2023, 2, 1),
+                          maxTime: DateTime(2100, 12, 31),
+                          onConfirm: (date) {
+                            dateController.text =
+                                DateFormat('yyyy-MM-dd').format(date);
+                          },
+                          currentTime: DateTime.now(),
+                          locale: LocaleType.en,
+                        );
+                      },
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 SizedBox(width: 16),
                 Expanded(
-                  child: TextFormField(
-                    controller: timeController,
-                    decoration: InputDecoration(
-                      labelText: 'Select Time',
-                      border: OutlineInputBorder(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(28),
+                      border: Border.all(color: Colors.grey),
                     ),
-                    readOnly: true,
-                    onTap: () {
-                      DatePicker.showTimePicker(
-                        context,
-                        showTitleActions: true,
-                        onConfirm: (time) {
-                          final selectedDateTime = DateTime(
-                            DateTime.now().year,
-                            DateTime.now().month,
-                            DateTime.now().day,
-                            time.hour,
-                            time.minute,
-                          );
-                          timeController.text =
-                              DateFormat('hh:mm a').format(selectedDateTime);
-                        },
-                        currentTime: DateTime.now(),
-                        locale: LocaleType.en,
-                      );
-                    },
+                    child: TextFormField(
+                      controller: timeController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.access_time),
+                        labelText: 'Select Time',
+                        border: InputBorder.none,
+                      ),
+                      readOnly: true,
+                      onTap: () {
+                        DatePicker.showTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onConfirm: (time) {
+                            final selectedDateTime = DateTime(
+                              DateTime.now().year,
+                              DateTime.now().month,
+                              DateTime.now().day,
+                              time.hour,
+                              time.minute,
+                            );
+                            timeController.text =
+                                DateFormat('hh:mm a').format(selectedDateTime);
+                          },
+                          currentTime: DateTime.now(),
+                          locale: LocaleType.en,
+                        );
+                      },
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
             ),
-            Spacer(),
+            const SizedBox(
+              height: 60,
+            ),
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    elevation: 10, backgroundColor: Colors.black38),
+                    minimumSize: Size(400, 50),
+                    elevation: 12,
+                    backgroundColor: Colors.black38),
                 onPressed: () {},
                 child: Text('Book Now'),
               ),

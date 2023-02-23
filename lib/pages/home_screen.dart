@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../helper/database_helper.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -11,6 +13,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _bookingCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBookingCount();
+  }
+
+  Future<void> _loadBookingCount() async {
+    final dbHelper = DatabaseHelper.instance;
+    final count = await dbHelper.totalBookings();
+    setState(() {
+      _bookingCount = count!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,11 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         children: [
                           Text(
-                            "Bookings: ",
+                            "Bookings:$_bookingCount",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w500),
                           ),
-                          const SizedBox(width: 150),
+                          const SizedBox(width: 130),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 elevation: 10, backgroundColor: Colors.black38),

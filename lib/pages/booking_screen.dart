@@ -16,6 +16,7 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   final dateController = TextEditingController();
   final timeController = TextEditingController();
+  late final Function updateBookingCount;
 
   @override
   Widget build(BuildContext context) {

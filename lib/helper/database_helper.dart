@@ -57,4 +57,12 @@ class DatabaseHelper {
       return BookingModel.fromMap(maps[i]);
     });
   }
+
+  Future<int?> totalBookings() async {
+    final Database db = await instance.database;
+    final int? count = Sqflite.firstIntValue(
+      await db.rawQuery('SELECT COUNT(*) FROM $_bookingTable'),
+    );
+    return count;
+  }
 }

@@ -1,30 +1,30 @@
 [
   {
     "id": 1,
-    "image_url": "http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoq-A-yMLMJqeqBYc73OtuxIw9S_QR8iOBA&usqp=CAU",
     "title": "Nirvana Massage Center",
     "address": "Thamel Marg, Kathmandu",
-    "phone_number": "01-4444444"
+    "phoneNumber": "01-4444444"
   },
   {
     "id": 2,
-    "image_url": "http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5awTdRVG62ltF4qdGB1LDXvoNES2FWrRJOPyaVewfZknqA662O-rrtwSKwj3FqRPjXoE&usqp=CAU",
     "title": "Mandara Spa",
     "address": "Lazimpat, Kathmandu",
-    "phone_number": "01-5555555"
+    "phoneNumber": "01-5555555"
   },
   {
     "id": 3,
-    "image_url": "http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg",
+    "imageUrl": "http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg",
     "title": "Six Senses Spa",
     "address": "Bouddha, Kathmandu",
-    "phone_number": "01-6666666"
+    "phoneNumber": "01-6666666"
   },
   {
     "id": 4,
-    "image_url": "http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWmijh7fpyr3aMJOhFhn950CVF0SvFADraHjUBZanJSjxKAYWTAkXNd09K-7QkxwSV0m8&usqp=CAU",
     "title": "Oasis Spa",
     "address": "Bakhundole, Lalitpur",
-    "phone_number": "01-7777777"
+    "phoneNumber": "01-7777777"
   }
 ]

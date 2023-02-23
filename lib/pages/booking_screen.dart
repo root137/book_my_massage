@@ -1,10 +1,10 @@
+import 'package:book_my_massage/widgets/massage_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../helper/database_helper.dart';
 import '../model/booking_model.dart';
-import 'home_screen.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _BookingScreenState extends State<BookingScreen> {
       appBar: AppBar(
         elevation: 30,
         backgroundColor: Colors.black38,
-        title: Center(
+        title: const Center(
           child: Text(
             "Bookings",
             style: TextStyle(color: Colors.white),
@@ -32,7 +32,7 @@ class _BookingScreenState extends State<BookingScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -41,9 +41,9 @@ class _BookingScreenState extends State<BookingScreen> {
               height: 300,
               fit: BoxFit.fill,
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Padding(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -54,9 +54,10 @@ class _BookingScreenState extends State<BookingScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   GestureDetector(
                     onTap: () {
+                      debugPrint('CAlled');
                       launchMap();
                     },
                     child: Row(
@@ -221,7 +222,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         ),
                       ),
                     );
-                    Navigator.pop(context);
+                    Navigator.of(context).pop(true);
                   }
                 },
                 child: const Text(

@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:book_my_massage/pages/booking_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../helper/database_helper.dart';
+import '../model/massage_centres_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,10 +19,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _bookingCount = 0;
 
+  List<MassageCentres> _massageCentresList = [];
+
   @override
   void initState() {
     super.initState();
     _loadBookingCount();
+    _loadMassageCentres();
   }
 
   Future<void> _loadBookingCount() async {
@@ -26,6 +33,23 @@ class _HomeScreenState extends State<HomeScreen> {
     final count = await dbHelper.totalBookings();
     setState(() {
       _bookingCount = count!;
+    });
+  }
+
+  Future<void> _loadMassageCentres() async {
+    // Load JSON file from assets
+    String jsonString = await rootBundle.loadString('assets/data.json');
+    final jsonData = json.decode(jsonString);
+
+    // Map JSON data to List of Massage centres
+    List<MassageCentres> massageCentresList = [];
+    for (var item in jsonData) {
+      MassageCentres centre = MassageCentres.fromJson(item);
+      massageCentresList.add(centre);
+    }
+
+    setState(() {
+      _massageCentresList = massageCentresList;
     });
   }
 

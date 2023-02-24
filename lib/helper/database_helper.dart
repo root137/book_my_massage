@@ -88,12 +88,6 @@ class DatabaseHelper {
     });
   }
 
-  // Future<void> saveMassages(List<MassageCentre> massageCentres) async {
-  //   final db = await database;
-  //   for (var massage in massageCentres) {
-  //     await db.insert(_massageTable, massage.toMap());
-  //   }
-  // }
   Future<void> saveMassages(List<MassageCentre> massageCentres) async {
     final db = await database;
     for (var massage in massageCentres) {
@@ -111,5 +105,20 @@ class DatabaseHelper {
       await db.rawQuery('SELECT COUNT(*) FROM $_bookingTable'),
     );
     return count;
+  }
+
+  Future<void> updateBookingCount(int massageId) async {
+    final db = await instance.database;
+    final massages = await getAllMassages();
+    final massageTobeUpdated =
+        massages.firstWhere((element) => element.id == massageId);
+    massageTobeUpdated.copyWith(
+        bookingCount: massageTobeUpdated.bookingCount =
+            massageTobeUpdated.bookingCount! + 1);
+    await db.insert(
+      _massageTable,
+      massageTobeUpdated.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }

@@ -77,7 +77,7 @@ class MassageListItem extends StatelessWidget {
                   const SizedBox(height: 5),
                   GestureDetector(
                     onTap: () {
-                      launchDialer();
+                      launchDialer(massageCentre.phoneNumber);
                     },
                     child: Row(
                       children: [
@@ -137,10 +137,10 @@ class MassageListItem extends StatelessWidget {
   }
 }
 
-void launchDialer() async {
+void launchDialer(String phoneNumber) async {
   final Uri url = Uri(
     scheme: 'tel',
-    path: "9803736532",
+    path: phoneNumber,
   );
   await launchUrl(url);
 }
@@ -152,6 +152,6 @@ void launchMap() async {
   if (await canLaunchUrlString(mapUrl)) {
     await launchUrlString(mapUrl);
   } else {
-    print("Couldn't launch Map");
+    throw "Couldn't launch Map";
   }
 }

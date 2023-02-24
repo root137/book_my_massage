@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 30,
         backgroundColor: Colors.black38,
-        title: Center(
+        title: const Center(
           child: Text(
             "Massage Centers",
             style: TextStyle(color: Colors.white),
@@ -45,15 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
       body: FutureBuilder<List<MassageCentre>>(
           future: DataUtils.loadDataFromDb(),
           builder: (_, snapShot) {
-            debugPrint('snapshot: ${snapShot.data}');
             if (snapShot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.black38,
+              ));
             }
             if (snapShot.hasData) {
               final massagesList = snapShot.data;
               return ListView.separated(
                 itemCount: massagesList!.length,
-                separatorBuilder: ((context, index) => SizedBox(
+                separatorBuilder: ((context, index) => const SizedBox(
                       height: 8,
                     )),
                 itemBuilder: ((context, index) => MassageListItem(

@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:book_my_massage/model/massage_centres_model.dart';
 import 'package:book_my_massage/widgets/massage_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -17,6 +20,7 @@ class _BookingScreenState extends State<BookingScreen> {
   final dateController = TextEditingController();
   final timeController = TextEditingController();
   late final Function updateBookingCount;
+  late final MassageCentre massageCentre;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class _BookingScreenState extends State<BookingScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'BEAUTY HEALTH SPA',
                     style: TextStyle(
                       fontSize: 20,
@@ -57,11 +61,10 @@ class _BookingScreenState extends State<BookingScreen> {
                   const SizedBox(height: 5),
                   GestureDetector(
                     onTap: () {
-                      debugPrint('CAlled');
                       launchMap();
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Icon(Icons.location_on, size: 16),
                         SizedBox(width: 5),
                         Text(
@@ -71,13 +74,13 @@ class _BookingScreenState extends State<BookingScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   GestureDetector(
                     onTap: () {
-                      launchDialer();
+                      launchDialer(massageCentre.phoneNumber);
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Icon(Icons.phone, size: 16),
                         SizedBox(width: 5),
                         Text(
@@ -93,7 +96,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               children: <Widget>[
                 Expanded(
@@ -104,7 +107,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ),
                     child: TextFormField(
                       controller: dateController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.date_range),
                         labelText: 'Select Date',
                         border: InputBorder.none,
@@ -124,11 +127,11 @@ class _BookingScreenState extends State<BookingScreen> {
                           locale: LocaleType.en,
                         );
                       },
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -137,7 +140,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ),
                     child: TextFormField(
                       controller: timeController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.access_time),
                         labelText: 'Select Time',
                         border: InputBorder.none,
@@ -182,8 +185,8 @@ class _BookingScreenState extends State<BookingScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text('Please select a date.'),
-                        duration: Duration(seconds: 2),
+                        content: const Text('Please select a date.'),
+                        duration: const Duration(seconds: 2),
                         action: SnackBarAction(
                           label: 'OK',
                           onPressed: () {},
@@ -194,8 +197,8 @@ class _BookingScreenState extends State<BookingScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text('Please select a time.'),
-                        duration: Duration(seconds: 2),
+                        content: const Text('Please select a time.'),
+                        duration: const Duration(seconds: 2),
                         action: SnackBarAction(
                           label: 'OK',
                           onPressed: () {},
@@ -209,13 +212,14 @@ class _BookingScreenState extends State<BookingScreen> {
                       time: timeController.text,
                     );
                     final dbHelper = DatabaseHelper.instance;
+                    // ignore: unused_local_variable
                     final id = await dbHelper.insertBooking(booking);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.green,
-                        content: Text('Booked Successfully!!'),
-                        duration: Duration(seconds: 2),
+                        content: const Text('Booked Successfully!!'),
+                        duration: const Duration(seconds: 2),
                         action: SnackBarAction(
                           label: 'OK',
                           onPressed: () {},

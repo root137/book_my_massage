@@ -7,7 +7,7 @@ class MassageCentre {
   final String title;
   final String address;
   final String phoneNumber;
-  final int bookingCount;
+  int? bookingCount;
 
   MassageCentre({
     required this.id,

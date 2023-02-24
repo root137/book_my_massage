@@ -119,7 +119,10 @@ class MassageListItem extends StatelessWidget {
                       final result = await Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BookingScreen()),
+                          builder: (context) => BookingScreen(
+                            massageCentre: massageCentre,
+                          ),
+                        ),
                       );
 
                       if (result != null && result == true) {

@@ -10,7 +10,10 @@ import '../helper/database_helper.dart';
 import '../model/booking_model.dart';
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  const BookingScreen({Key? key, required this.massageCentre})
+      : super(key: key);
+
+  final MassageCentre massageCentre;
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -19,8 +22,6 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   final dateController = TextEditingController();
   final timeController = TextEditingController();
-  late final Function updateBookingCount;
-  late final MassageCentre massageCentre;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class _BookingScreenState extends State<BookingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.network(
-              'http://massage4you.in/wp-content/uploads/2020/02/female-body-massage.jpg',
+              widget.massageCentre.imageUrl,
               height: 300,
               fit: BoxFit.fill,
             ),
@@ -51,9 +52,9 @@ class _BookingScreenState extends State<BookingScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text(
-                    'BEAUTY HEALTH SPA',
-                    style: TextStyle(
+                  Text(
+                    widget.massageCentre.title,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -64,12 +65,12 @@ class _BookingScreenState extends State<BookingScreen> {
                       launchMap();
                     },
                     child: Row(
-                      children: const [
-                        Icon(Icons.location_on, size: 16),
-                        SizedBox(width: 5),
+                      children: [
+                        const Icon(Icons.location_on, size: 16),
+                        const SizedBox(width: 5),
                         Text(
-                          'New Baneshwor, Kathmandu',
-                          style: TextStyle(fontSize: 16),
+                          widget.massageCentre.address,
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
@@ -77,15 +78,15 @@ class _BookingScreenState extends State<BookingScreen> {
                   const SizedBox(height: 5),
                   GestureDetector(
                     onTap: () {
-                      launchDialer(massageCentre.phoneNumber);
+                      launchDialer(widget.massageCentre.phoneNumber);
                     },
                     child: Row(
-                      children: const [
-                        Icon(Icons.phone, size: 16),
-                        SizedBox(width: 5),
+                      children: [
+                        const Icon(Icons.phone, size: 16),
+                        const SizedBox(width: 5),
                         Text(
-                          '9803736532',
-                          style: TextStyle(
+                          widget.massageCentre.phoneNumber,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
